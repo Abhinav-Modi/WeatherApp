@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 5000;
 const cors = require("cors");
+const path = require("path");
 //parse application/json
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
@@ -11,7 +12,15 @@ app.use(express.json());
 const router = require("./router");
 
 app.use("/forecasts/", router);
-app.use(express.static("public"));
+const buildPath = path.join(__dirname, "../client/build");
+app.use(express.static(buildPath));
+app.get("/*", (req, res) => {
+	res.sendFile(path.join(__dirname, "../client/build/index.html"), (err) => {
+		if (err) {
+			res.status(500).send(err);
+		}
+	});
+});
 
 app.get("/", (req, res) => {
 	const d = new Date();

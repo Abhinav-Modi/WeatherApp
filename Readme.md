@@ -41,6 +41,6 @@ The backend requests to open weather API and
 then serves the request to the frontend client using HTTP request and response.
 
 ## Deployment
-Deployed on AWS cloud EC2: [Click Here to View the deployed website](http://65.2.190.82/)
+Deployed on AWS cloud EC2: http://65.2.190.82/
 
 
